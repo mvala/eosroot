@@ -29,6 +29,8 @@ string(REPLACE "." ";" VERSION_LIST ${ROOT_VERSION})
 list(GET VERSION_LIST 0 ROOT_VERSION_MAJOR)
 if (ROOT_VERSION_MAJOR GREATER 5)
   include(Root6Macros)
+else (ROOT_VERSION_MAJOR GREATER 5)
+  add_compile_options("-std=c++1y")
 endif (ROOT_VERSION_MAJOR GREATER 5)
 include(RootMacros)
 
