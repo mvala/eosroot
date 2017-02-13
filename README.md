@@ -1,1 +1,1 @@
-# eosroot
+# eos-root
