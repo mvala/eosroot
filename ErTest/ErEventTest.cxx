@@ -1,29 +1,28 @@
-#include "ErEvent.h"
+#include "ErEventTest.h"
 #include <TRandom.h>
 #include <TString.h>
 
 /// \cond CLASSIMP
-ClassImp(ErEvent);
+ClassImp(ErEventTest);
 /// \endcond
 
-ErEvent::ErEvent()
-    : TObject(), fID(0), fVx(0.0), fVy(0.0), fVz(0.0), fNTracks(0), fTracks(0) {
+ErEventTest::ErEventTest() : ErVEvent(), fVx(0.0), fVy(0.0), fVz(0.0) {
   ///
   /// Default constructor
   ///
 }
 
-ErEvent::ErEvent(Long64_t id, Double_t vx, Double_t vy, Double_t vz)
-    : TObject(), fID(id), fVx(vx), fVy(vy), fVz(vz), fNTracks(0), fTracks(0) {
+ErEventTest::ErEventTest(Long64_t id, Double_t vx, Double_t vy, Double_t vz)
+    : ErVEvent(id), fVx(vx), fVy(vy), fVz(vz) {
   ///
   /// A constructor
   ///
 
-  fTracks = new TClonesArray("ErTrack");
+  fTracks = new TClonesArray("ErTrackTest");
   gRandom->SetSeed(0);
 }
 
-ErEvent::~ErEvent() {
+ErEventTest::~ErEventTest() {
   ///
   /// A destructor
   ///
@@ -32,13 +31,20 @@ ErEvent::~ErEvent() {
   fTracks = 0;
 }
 
-ErTrack *ErEvent::AddTrack() {
+ErTrackTest *ErEventTest::GetTrack(Long64_t id) {
+  ///
+  /// Return track with id
+  ///
+  return (ErTrackTest *)fTracks->At(id);
+}
+
+ErTrackTest *ErEventTest::AddTrack() {
   ///
   /// Adds track to event
   ///
-  return (ErTrack *)fTracks->ConstructedAt(fNTracks++);
+  return (ErTrackTest *)fTracks->ConstructedAt(fNTracks++);
 }
-void ErEvent::Print(Option_t *option) const {
+void ErEventTest::Print(Option_t *option) const {
   ///
   /// Printing event info
   ///
@@ -50,15 +56,15 @@ void ErEvent::Print(Option_t *option) const {
   TString str(option);
   str.ToLower();
   if (str.Contains("all")) {
-    ErTrack *t;
+    ErTrackTest *t;
     for (Int_t i = 0; i < fTracks->GetEntries(); i++) {
-      t = (ErTrack *)fTracks->At(i);
+      t = (ErTrackTest *)fTracks->At(i);
       t->Print();
     }
   }
 }
 
-void ErEvent::Clear(Option_t *) {
+void ErEventTest::Clear(Option_t *) {
   ///
   /// Reseting event to default values and clear all tracks
   ///
@@ -71,7 +77,7 @@ void ErEvent::Clear(Option_t *) {
   fTracks->Clear("C");
 }
 
-void ErEvent::BuildVertexRandom() {
+void ErEventTest::BuildVertexRandom() {
   ///
   /// Builds random vertex
   ///

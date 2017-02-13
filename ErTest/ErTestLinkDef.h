@@ -4,6 +4,6 @@
 #pragma link off all classes;
 #pragma link off all functions;
 
-#pragma link C++ class ErVTrack + ;
-#pragma link C++ class ErVEvent + ;
+#pragma link C++ class ErTrackTest + ;
+#pragma link C++ class ErEventTest + ;
 #endif

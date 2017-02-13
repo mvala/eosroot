@@ -1,20 +1,20 @@
-set(PACKAGE ErBase)
+set(PACKAGE ErTest)
 
 set(SRCS 
-ErVTrack.cxx
-ErVEvent.cxx
+ErTrackTest.cxx
+ErEventTest.cxx
 )
 
 set (MY_INCLUDE_DIRS
-${CMAKE_CURRENT_SOURCE_DIR}
-${ROOT_INCLUDE_DIR}
+  ${CMAKE_CURRENT_SOURCE_DIR}
+  ${CMAKE_CURRENT_SOURCE_DIR}/../ErBase
+  ${ROOT_INCLUDE_DIR}
 )
 
 set (MY_LINK_DIRS
-${CMAKE_CURRENT_BINARY_DIR}
-${ROOT_LIBRARY_DIR}
+  ${CMAKE_CURRENT_BINARY_DIR}
+  ${ROOT_LIBRARY_DIR}
 )
-
 
 include_directories( ${MY_INCLUDE_DIRS} )
 link_directories( "${MY_LINK_DIRS}")

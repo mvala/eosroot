@@ -52,6 +52,7 @@ if(PAR)
 endif()
 
 add_subdirectory(ErBase)
+add_subdirectory(ErTest)
 add_subdirectory(doc)
 
 set(CPACK_SOURCE_GENERATOR "TGZ")

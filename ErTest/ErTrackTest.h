@@ -1,20 +1,20 @@
-#ifndef ErTrack_cxx
-#define ErTrack_cxx
+#ifndef ErTrackTest_cxx
+#define ErTrackTest_cxx
 
-#include <TObject.h>
+#include <ErVTrack.h>
 
 ///
-/// \class ErTrack
+/// \class ErTrackTest
 ///
 /// \brief Track object
 ///	\author Martin Vala <mvala@cern.ch>
 ///
 
-class ErTrack : public TObject {
+class ErTrackTest : public ErVTrack {
 
 public:
-  ErTrack();
-  virtual ~ErTrack();
+  ErTrackTest();
+  virtual ~ErTrackTest();
 
   /// \fn Double_t GetPx() const
   /// Momentum x component
@@ -55,7 +55,7 @@ public:
   virtual void Print(Option_t *option = "") const;
   virtual void Clear(Option_t *option = "");
 
-  void BuildRandom();
+  virtual void BuildRandom();
 
 private:
   Double_t fPx;    ///< Momentum x
@@ -65,11 +65,11 @@ private:
 
   // TODO
   /// Copy constructor
-  ErTrack(const ErTrack &);            /// not implemented
-  ErTrack &operator=(const ErTrack &); /// not implemented
+  ErTrackTest(const ErTrackTest &);            /// not implemented
+  ErTrackTest &operator=(const ErTrackTest &); /// not implemented
 
   /// \cond CLASSIMP
-  ClassDef(ErTrack, 1);
+  ClassDef(ErTrackTest, 1);
   /// \endcond
 };
 

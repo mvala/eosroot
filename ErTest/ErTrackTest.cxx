@@ -1,27 +1,25 @@
-#include "ErTrack.h"
+#include "ErTrackTest.h"
 #include <TMath.h>
 #include <TRandom.h>
 #include <TString.h>
 
 /// \cond CLASSIMP
-ClassImp(ErTrack);
+ClassImp(ErTrackTest);
 /// \endcond
 
-ErTrack::ErTrack() : TObject(), fPx(0.0), fPy(0.0), fPz(0.0), fCharge(0) {
+ErTrackTest::ErTrackTest() : ErVTrack() {
   ///
   /// A constructor
   ///
-
-  gRandom->SetSeed(0);
 }
 
-ErTrack::~ErTrack() {
+ErTrackTest::~ErTrackTest() {
   ///
   /// A destructor
   ///
 }
 
-void ErTrack::BuildRandom() {
+void ErTrackTest::BuildRandom() {
   ///
   /// Building random event
   ///
@@ -36,7 +34,7 @@ void ErTrack::BuildRandom() {
   fCharge = (gRandom->Integer(2) > 0) ? 1 : -1;
 }
 
-void ErTrack::Print(Option_t * /*option*/) const {
+void ErTrackTest::Print(Option_t * /*option*/) const {
   ///
   /// Printing track info
   ///
@@ -44,7 +42,7 @@ void ErTrack::Print(Option_t * /*option*/) const {
   Printf("ch=%d px=%.3f py=%.3f pz=%.3f", fCharge, fPx, fPy, fPz);
 }
 
-void ErTrack::Clear(Option_t *) {
+void ErTrackTest::Clear(Option_t *) {
   ///
   /// Reseting track to default values
   ///
@@ -55,7 +53,7 @@ void ErTrack::Clear(Option_t *) {
   fPz = 0;
 }
 
-void ErTrack::SetP(Double_t *p) {
+void ErTrackTest::SetP(Double_t *p) {
   ///
   /// Sets all components of momentum
   ///

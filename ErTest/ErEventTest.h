@@ -1,23 +1,24 @@
-#ifndef ErEvent_cxx
-#define ErEvent_cxx
+#ifndef ErEventTest_cxx
+#define ErEventTest_cxx
 
-#include "ErTrack.h"
+#include "ErTrackTest.h"
+#include <ErVEvent.h>
 #include <TClonesArray.h>
-#include <TObject.h>
 
 ///
-/// \class ErEvent
+/// \class ErEventTest
 ///
 /// \brief Event object
 ///	\author Martin Vala <mvala@cern.ch>
 ///
 
-class ErEvent : public TObject {
+class ErEventTest : public ErVEvent {
 
 public:
-  ErEvent();
-  ErEvent(Long64_t id, Double_t vx = 0.0, Double_t vy = 0.0, Double_t vz = 0.0);
-  virtual ~ErEvent();
+  ErEventTest();
+  ErEventTest(Long64_t id, Double_t vx = 0.0, Double_t vy = 0.0,
+              Double_t vz = 0.0);
+  virtual ~ErEventTest();
 
   /// \fn Long64_t GetID() const
   /// Event ID
@@ -57,23 +58,20 @@ public:
   /// \fn Long64_t GetNTrack() const
   /// \return number of tracks
   ///
-  /// \fn ErTrack *GetTrack(Long64_t id)
+  /// \fn ErTrackTest *GetTrack(Long64_t id)
   /// \param id ID of track
   /// \return Track with id
 
-  Long64_t GetID() const { return fID; }
   Double_t GetVx() const { return fVx; }
   Double_t GetVy() const { return fVy; }
   Double_t GetVz() const { return fVz; }
 
-  void SetID(Long64_t id) { fID = id; }
   void SetVx(Double_t vx) { fVx = vx; }
   void SetVy(Double_t vy) { fVy = vy; }
   void SetVz(Double_t vz) { fVz = vz; }
 
-  Long64_t GetNTrack() const { return fNTracks; }
-  ErTrack *GetTrack(Long64_t id) { return (ErTrack *)fTracks->At(id); }
-  ErTrack *AddTrack();
+  virtual ErTrackTest *GetTrack(Long64_t id);
+  virtual ErTrackTest *AddTrack();
 
   virtual void Print(Option_t *option = "") const;
   virtual void Clear(Option_t *option = "");
@@ -81,22 +79,17 @@ public:
   void BuildVertexRandom();
 
 private:
-  Long64_t fID;   ///< ID of event
-  Double_t fVx;   ///< Vertex x
-  Double_t fVy;   ///< Vertex y
-  Double_t fVz;   ///< Vertex z
-  Int_t fNTracks; ///< Number of tracks
-
-  /// Array with all tracks
-  TClonesArray *fTracks; //->
+  Double_t fVx; ///< Vertex x
+  Double_t fVy; ///< Vertex y
+  Double_t fVz; ///< Vertex z
 
   // TODO
   /// Copy constructor
-  ErEvent(const ErEvent &);            /// not implemented
-  ErEvent &operator=(const ErEvent &); /// not implemented
+  ErEventTest(const ErEventTest &);            /// not implemented
+  ErEventTest &operator=(const ErEventTest &); /// not implemented
 
   /// \cond CLASSIMP
-  ClassDef(ErEvent, 1);
+  ClassDef(ErEventTest, 1);
   /// \endcond
 };
 
